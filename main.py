@@ -19,25 +19,15 @@ def singleline_diff(line1, line2):
 
       Returns IDENTICAL if the two lines are the same.
     """ 
-    if len(line1)<len(line2):
+    if line1!=line2:
         x=0
-        for char in line1 :
-            difference= char != line2[x]
+        for char in min(line1,line2) :
+            difference= char != max(line1,line2)[x]
             if difference:
                 diff= x
                 break
             else:
-                diff=len(line1)
-                x+=1
-    if len(line2)<len(line1):
-        x=0
-        for char in line2:
-            difference= char != line1[x]
-            if difference:
-                diff= x
-                break
-            else:
-                diff=len(line2)
+                diff=len(min(line1,line2))
                 x+=1
     if len(line1)==len(line2):
         x=0
@@ -52,7 +42,7 @@ def singleline_diff(line1, line2):
             
     return diff
 
-print(singleline_diff("Look for differences in the lines up to the last character in the shorter line", "Look for differences in the lines up to the last character in the shorter line"))
+
 
 
 
