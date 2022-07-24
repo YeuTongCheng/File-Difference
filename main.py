@@ -1,11 +1,3 @@
-"""
-Project for Week 4 of "Python Data Representations".
-Find differences in file contents.
-
-Be sure to read the project description page for further information
-about the expected behavior of the program.
-"""
-
 IDENTICAL = -1
 
 def singleline_diff(line1, line2):
@@ -18,23 +10,29 @@ def singleline_diff(line1, line2):
       line1 and line2 occurs.
 
       Returns IDENTICAL if the two lines are the same.
-    """ 
+    """
+    if (line1=='') or (line2==''):
+        diff=0
+    if (line1=='') and (line2==''):
+        diff=IDENTICAL        
     if line1!=line2:
         for index in range(len(min(line1,line2))) :
             difference= line1[index] != line2[index]
-            if difference:
+            if not difference:
+                diff=len(min(line1,line2))
+            else:
                 diff= index
                 break
-            else:
-                diff=len(min(line1,line2))
+                
     if len(line1)==len(line2):
         for index in range(len(line1)):
             difference= line1[index] != line2[index]
-            if difference:
+            if not difference:
+                diff=IDENTICAL
+            else:
                 diff= index
                 break
-            else:
-                diff=IDENTICAL
+                
             
     return diff
 
